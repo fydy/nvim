@@ -8,29 +8,29 @@
 
 # All SpaceVim option below [option] section
 [options]
-    # set spacevim theme. by default colorscheme layer is not loaded,
-    # if you want to use more colorscheme, please load the colorscheme
-    # layer
-    colorscheme = "gruvbox"
-    colorscheme_bg = "dark"
-    # Disable guicolors in basic mode, many terminal do not support 24bit
-    # true colors
-    enable_guicolors = true
-    # Disable statusline separator, if you want to use other value, please
-    # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_iseparator = "arrow"
-    buffer_index_type = 4
-    enable_tabline_filetype_icon = true
-    enable_statusline_mode = false
-	project_rooter_outermost = false
-    # bootstrap_before = 'myspacevim#before'
-    # bootstrap_after = 'myspacevim#before'
+# set spacevim theme. by default colorscheme layer is not loaded,
+# if you want to use more colorscheme, please load the colorscheme
+# layer
+colorscheme = "gruvbox"
+colorscheme_bg = "dark"
+# Disable guicolors in basic mode, many terminal do not support 24bit
+# true colors
+enable_guicolors = true
+# Disable statusline separator, if you want to use other value, please
+# install nerd fonts
+statusline_separator = "arrow"
+statusline_iseparator = "arrow"
+buffer_index_type = 4
+enable_tabline_filetype_icon = true
+enable_statusline_mode = false
+project_rooter_outermost = false
+# bootstrap_before = 'myspacevim#before'
+# bootstrap_after = 'myspacevim#before'
 
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
-auto_complete_method = "coc"
+autocomplete_method = "ycm"
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
 
@@ -39,37 +39,37 @@ name = 'shell'
 default_position = 'top'
 default_height = 30
 
+# 启用 format 模块
 [[layers]]
-  name = "checkers"
-  show_cursor_error = false
-  
-[[layers]]
-  name = 'lang#python'
-  python_interpreter = '/data/data/com.termux/files/usr/bin/python'
-  format_on_save = 1
-  format_on_save = true
-  enable_typeinfo = true
-  python_file_head = [
-	'#!/usr/bin/env python',
-	'# -*- coding: utf-8 -*-',
-	'',
-	''
-	]
+name = 'format'
+format_on_save = true
 
 [[layers]]
-  name = "lang#javascript"
-  
-[[layers]]
-  name = "lang#lua"
-  
-[[layers]]
-    name = "denite"
+name = "checkers"
+show_cursor_error = false
 
 [[layers]]
-    name = 'git'
-[[layers]]
-    name = 'VersionControl'
+name = 'lang#python'
+python_interpreter = '/data/data/com.termux/files/usr/bin/python'
+format_on_save = 1
+format_on_save = true
+enable_typeinfo = true
 
 [[layers]]
-    name = 'lang#c'
-    enable_clang_syntax_highlight = true
+name = "lang#javascript"
+
+[[layers]]
+name = "lang#lua"
+
+[[layers]]
+name = "denite"
+
+[[layers]]
+name = 'git'
+
+[[layers]]
+name = 'VersionControl'
+
+[[layers]]
+name = 'lang#c'
+enable_clang_syntax_highlight = true
