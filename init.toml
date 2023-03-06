@@ -97,3 +97,17 @@ filetypes = [
     "java",
     "python"
 ]
+
+[[layers]]
+name = "colorscheme"
+
+[[layers]]
+name = "core#t
+
+[[layers]]
+name = "git"
+enable = true
+
+[[layers]]
+name = "lang#markdown"
+enable = true
