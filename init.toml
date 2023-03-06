@@ -24,13 +24,15 @@ buffer_index_type = 4
 enable_tabline_filetype_icon = true
 enable_statusline_mode = false
 project_rooter_outermost = false
-# bootstrap_before = 'myspacevim#before'
+filemanager = "nerdtree"
+bootstrap_before = "myspacevim#before"
 # bootstrap_after = 'myspacevim#before'
+autocomplete_method = 'coc'
 
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
-autocomplete_method = "ycm"
+#    autocomplete_method = "ycm"
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
 
@@ -45,15 +47,23 @@ name = 'format'
 format_on_save = true
 
 [[layers]]
+name = "unite"
+# sudo apt-get install silversearcher-ag
+
+[options]
+default_indent = 4
+
+[[layers]]
 name = "checkers"
 show_cursor_error = false
 
 [[layers]]
-name = 'lang#python'
+name = "lang#python"
 python_interpreter = '/data/data/com.termux/files/usr/bin/python'
 format_on_save = 1
 format_on_save = true
 enable_typeinfo = true
+# pip install --user flake8 yapf autoflake isort
 
 [[layers]]
 name = "lang#javascript"
@@ -73,3 +83,17 @@ name = 'VersionControl'
 [[layers]]
 name = 'lang#c'
 enable_clang_syntax_highlight = true
+
+[[layers]]
+name = "ui"
+enable_scrollbar = true
+
+[[layers]]
+name = 'tmux'
+
+[[layers]]
+name = "lsp"
+filetypes = [
+    "java",
+    "python"
+]
