@@ -23,12 +23,14 @@
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
+    bootstrap_before = 'myspacevim#before'
+    bootstrap_after = 'myspacevim#before'
 
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
-auto_completion_return_key_behavior = "complete"
-auto_completion_tab_key_behavior = "smart"
+# auto_completion_return_key_behavior = "complete"
+# auto_completion_tab_key_behavior = "smart"
 
 [[layers]]
 name = 'shell'
@@ -37,5 +39,13 @@ default_height = 30
 
 [[layers]]
   name = 'lang#python'
+  format_on_save = 1
   format_on_save = true
   enable_typeinfo = true
+  enabled_linters = ['python', 'pylint']
+  python_file_head = [
+    '#!/usr/bin/env python',
+    '# -*- coding: utf-8 -*-',
+    '',
+    ''
+  ]
