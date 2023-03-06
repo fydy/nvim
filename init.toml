@@ -7,7 +7,7 @@
 
 # SpaceVim options {{{
 [options]
-    enable_statusline_mode = true
+	enable_statusline_mode = true
     enable_tabline_filetype_icon = true
     enable_os_fileformat_icon = true
     statusline_unicode_symbols = true
@@ -95,24 +95,28 @@ let g:fuck_f = 2
 
 # python 
 [[layers]]
-  name = 'lang#ruby'
+    name = 'lang#ruby'
 [[layers]]
-  name = 'lang#javascript'
+    name = 'lang#javascript'
 
 # python 
 [[layers]]
-  name = 'lang#vim'
+    name = 'lang#vim'
 
 # python 
 [[layers]]
-  name = 'lang#python'
-  python_file_head = [      
-      '# -*- coding: utf-8 -*-',
-      '# Author: xxx',
-      '# Mail: xxx@xx'
-      '# Created Time: `strftime("%a %b %d")`'
-      ''
-  ]
+	name = 'lang#python'
+	format_on_save = 1
+	format_on_save = true
+	enable_typeinfo = true
+	enabled_linters = ['python', 'pylint']
+	python_file_head = [
+		'# -*- coding: utf-8 -*-',
+		'# Author: xxx',
+		'# Mail: xxx@xx'
+		'# Created Time: `strftime("%a %b %d")`'
+		''
+	]
 [[layers]]
     name = 'telescope'
     enable = 'has("nvim")'
@@ -136,10 +140,6 @@ let g:fuck_f = 2
     auto_generate_doc = true
 [[layers]]
     name = 'lang#postscript'
-[[layers]]
-    name = 'lang#e'
-    e_interpreter = 'D:\Program Files\e\rune.bat'
-    e_jar_path = 'D:\Program Files\e\e.jar'
 [[layers]]
     name = 'lang#java'
 [[layers]]
@@ -185,21 +185,8 @@ let g:fuck_f = 2
 [[layers]]
     name = 'foldsearch'
     enable = true
-# [[layers]]
-#     name = 'zettelkasten'
-#     zettel_dir = 'D:\me\zettelkasten'
-#     zettel_template_dir = 'D:\me\zettelkasten_template'
-#     enable = true
-# [[layers]]
-#     name = 'gtags'
-#     enable = true
-#     ctags_bin = 'C:\Users\wsdjeg\.SpaceVim\bundle\phpcomplete.vim\bin\ctags.exe'
 [[layers]]
     name = 'lsp'
     enabled_clients = ['vimls', 'clangd']
     filetypes = ['vim']
     enable = true
-# [[layers]]
-#     name = 'tools#mpv'
-#     mpv_interpreter = 'D:\Program Files\mpv\mpv.exe'
-#     musics_directory = 'E:\我的坚果云\音乐'
