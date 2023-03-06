@@ -29,6 +29,7 @@
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
+auto_complete_method = "coc"
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
 
@@ -38,14 +39,14 @@ default_position = 'top'
 default_height = 30
 
 [[layers]]
-  name = 'lang#python'
-  format_on_save = 1
-  format_on_save = true
-  enable_typeinfo = true
-  enabled_linters = ['python', 'pylint']
-  python_file_head = [
-    '#!/usr/bin/env python',
-    '# -*- coding: utf-8 -*-',
-    '',
-    ''
-  ]
+name = 'lang#python'
+format_on_save = 1
+format_on_save = true
+enable_typeinfo = true
+enabled_linters = ['python', 'pylint']
+python_file_head = [
+  '#!/usr/bin/env python',
+  '# -*- coding: utf-8 -*-',
+  '',
+  ''
+]
