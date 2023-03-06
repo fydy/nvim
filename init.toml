@@ -38,12 +38,18 @@ auto_completion_tab_key_behavior = "smart"
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+[[layers]]
+  name = "checkers"
+  show_cursor_error = false
+  
 [[layers]]
   name = 'lang#python'
   python_interpreter = '/data/data/com.termux/files/usr/bin/python'
   format_on_save = 1
   format_on_save = true
   enable_typeinfo = true
+  enabled_linters = ['python', 'pylint']
   python_file_head = [
 	'#!/usr/bin/env python',
 	'# -*- coding: utf-8 -*-',
