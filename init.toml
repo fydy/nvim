@@ -24,15 +24,16 @@ buffer_index_type = 4
 enable_tabline_filetype_icon = true
 enable_statusline_mode = false
 project_rooter_outermost = false
+ snippet_engine = "ultisnips"
 filemanager = "nerdtree"
 bootstrap_before = "myspacevim#before"
 # bootstrap_after = 'myspacevim#before'
-autocomplete_method = 'coc'
+# autocomplete_method = 'coc'
 
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
-#    autocomplete_method = "ycm"
+autocomplete_method = "deoplete"
 auto_completion_return_key_behavior = "complete"
 auto_completion_tab_key_behavior = "smart"
 
@@ -100,9 +101,6 @@ filetypes = [
 
 [[layers]]
 name = "colorscheme"
-
-[[layers]]
-name = "core#t
 
 [[layers]]
 name = "git"
