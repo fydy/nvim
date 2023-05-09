@@ -259,96 +259,13 @@ lvim.plugins = {
             end,
         },
 
-        {
-            'NvChad/nvim-colorizer.lua',
-            event = { 'CursorHold' },
-            config = function()
-                require('plugin-configs.colorizer')
-            end,
-        },
-
-        {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-            event = 'BufRead',
-        },
-        {
-            'nvim-treesitter/nvim-treesitter',
-            event = 'CursorHold',
-            build = ':TSUpdate',
-            config = function()
-                require('plugin-configs.treesitter')
-            end,
-        },
-
-        {
-            'akinsho/bufferline.nvim',
-            event = { 'BufNewFile', 'BufRead', 'TabEnter' },
-            config = function()
-                require('plugin-configs.bufferline')
-            end,
-            init = function()
-                require('core.mappings').bufferline()
-            end,
-        },
-
-        {
-            'goolord/alpha-nvim',
-            event = 'VimEnter',
-            config = function()
-                require('plugin-configs.alpha')
-            end,
-        },
-
-        {
-            'lewis6991/gitsigns.nvim',
-            event = 'BufRead',
-            config = function()
-                require('plugin-configs.gitsigns')
-            end,
-        },
-
-        {
-            'lukas-reineke/indent-blankline.nvim',
-            event = 'BufRead',
-            config = function()
-                require('plugin-configs.blankline')
-            end,
-        },
-
-        {
-            'folke/todo-comments.nvim',
-            event = 'BufRead',
-            lazy = true,
-            config = function()
-                require('plugin-configs.todo_comments')
-            end,
-            init = function()
-                require('core.mappings').todo_comments()
-            end,
-        },
-
-        ------------------------------ UI ----------------------------------
-
-        ------------------------------ 功能组件 ----------------------------------
-
-        -- 目录树
-        {
-            'kyazdani42/nvim-tree.lua',
-            cmd = { 'NvimTreeToggle', 'NvimTreeFocus' },
-            config = function()
-                require('plugin-configs.nvimtree')
-            end,
-            init = function()
-                require('core.mappings').nvimtree()
-            end,
-        },
-
         -- lsp
         {
-            'neovim/nvim-lspconfig',
-            config = function()
-                require('core.lsp')
-            end,
+            "L3MON4D3/LuaSnip",
+            -- follow latest release.
+            version = "^1", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+            -- install jsregexp (optional!).
+            build = "make install_jsregexp"
         },
 
         -- 片段
@@ -359,286 +276,102 @@ lvim.plugins = {
                 require('plugin-configs.luasnip')
             end,
         },
-
-        -- 自动完成
+        -- File explorer
         {
-            'hrsh7th/nvim-cmp',
-            event = 'VeryLazy',
-            config = function()
-                require('plugin-configs.cmp')
-            end,
-            dependencies = {
-                'saadparwaiz1/cmp_luasnip',
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-buffer',
-                'hrsh7th/cmp-nvim-lua',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-cmdline',
-            },
+            'kyazdani42/nvim-tree.lua',
+            dependencies = { 'kyazdani42/nvim-web-devicons' },
         },
+        -- Indent line
+        { 'lukas-reineke/indent-blankline.nvim' },
 
-        -- 自动补全括号
+        -- Tag viewer
+        { 'preservim/tagbar' },
+
+        -- Autopair
         {
             'windwp/nvim-autopairs',
             event = 'InsertEnter',
-            dependencies = 'hrsh7th/nvim-cmp',
             config = function()
-                require('plugin-configs.autopairs')
-            end,
+                require('nvim-autopairs').setup {}
+            end
         },
 
-        -- 自动关闭标签
+        -- LSP
+        { 'neovim/nvim-lspconfig' },
+
+        -- Autocomplete
         {
-            'windwp/nvim-ts-autotag',
+            'hrsh7th/nvim-cmp',
+            -- load cmp on InsertEnter
             event = 'InsertEnter',
-            dependencies = 'hrsh7th/nvim-cmp',
-            opts = {
-                filetypes = { 'javascriptreact', 'typescriptreact', 'html', 'vue', 'tsx', 'jsx' },
-            },
-        },
-
-        -- 格式化
-        {
-            'mhartington/formatter.nvim',
-            event = 'BufWrite',
-            config = function()
-                require('plugin-configs.formatter')
-            end,
-        },
-
-        -- 注释
-        {
-            'numToStr/Comment.nvim',
-            event = 'VeryLazy',
+            -- these dependencies will only be loaded when cmp loads
+            -- dependencies are always lazy-loaded unless specified otherwise
             dependencies = {
-                'JoosepAlviste/nvim-ts-context-commentstring',
-            },
-            config = function()
-                require('plugin-configs.comment')
-            end,
-            init = function()
-                require('core.mappings').comment()
-            end,
-        },
-
-        -- {
-        --   'zbirenbaum/copilot.lua',
-        --   cmd = 'Copilot',
-        --   event = 'VimEnter',
-        --   config = function()
-        --     vim.defer_fn(function()
-        --       require('copilot').setup()
-        --     end, 100)
-        --   end,
-        --   opts = {
-        --     suggestion = { enabled = false },
-        --     panel = { enabled = false },
-        --   },
-        -- },
-        --
-        -- {
-        --   'zbirenbaum/copilot-cmp',
-        --   dependencies = 'zbirenbaum/copilot.lua',
-        --   config = function()
-        --     require('copilot_cmp').setup()
-        --   end,
-        -- },
-
-        -- 输入提示函数参数
-        {
-            'ray-x/lsp_signature.nvim',
-            event = 'VeryLazy',
-            config = true,
-            opts = {
-                bind = true,
-                doc_lines = 0,
-                floating_window = true,
-                fix_pos = true,
-                hint_enable = true,
-                hint_prefix = ' ',
-                hint_scheme = 'String',
-                hi_parameter = 'Search',
-                max_height = 22,
-                max_width = 120,
-                handler_opts = {
-                    border = 'single',
-                },
-                zindex = 200,
-                padding = '',
+                'L3MON4D3/LuaSnip',
+                'hrsh7th/cmp-nvim-lsp',
+                'hrsh7th/cmp-path',
+                'hrsh7th/cmp-buffer',
+                'saadparwaiz1/cmp_luasnip',
             },
         },
+    }),
 
-        -- 几个文件之间快速跳转
-        {
-            'ThePrimeagen/harpoon',
-            event = 'VeryLazy',
-            config = function()
-                require('plugin-configs.harpoon')
-            end,
-            init = function()
-                require('core.mappings').harpoon()
-            end,
+    -- 自动补全括号
+    {
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
+        dependencies = 'hrsh7th/nvim-cmp',
+        config = function()
+            require('nvim-autopairs').setup {}
+        end,
+    },
+
+    -- 自动关闭标签
+    {
+        'windwp/nvim-ts-autotag',
+        event = 'InsertEnter',
+        dependencies = 'hrsh7th/nvim-cmp',
+        opts = {
+            filetypes = { 'py', 'javascriptreact', 'typescriptreact', 'html', 'vue', 'tsx', 'jsx' },
         },
+    },
 
-        -- 模糊搜索
-        {
-            'nvim-telescope/telescope.nvim',
-            cmd = 'Telescope',
-            config = function()
-                require('plugin-configs.telescope')
-            end,
-            init = function()
-                require('core.mappings').telescope()
-            end,
-        },
+    -- 格式化
+    {
+        'mhartington/formatter.nvim',
+        event = 'BufWrite',
+        config = function()
+            require('plugin.formatter')
+        end,
+    },
+    {
+        'kylechui/nvim-surround',
+        event = 'VeryLazy',
+        config = true,
+    },
 
-        --
-        {
-            'kylechui/nvim-surround',
-            event = 'VeryLazy',
-            config = true,
-        },
-
-        -- Markdown 预览
-        {
-            'iamcco/markdown-preview.nvim',
-            ft = 'markdown',
-            keys = {
-                {
-                    '<leader>mp',
-                    ':MarkdownPreview <CR>',
-                },
-                {
-                    '<leader>ms',
-                    ':MarkdownPreviewStop <CR>',
-                },
+    -- Markdown 预览
+    {
+        'iamcco/markdown-preview.nvim',
+        ft = 'markdown',
+        keys = {
+            {
+                '<leader>mp',
+                ':MarkdownPreview <CR>',
             },
-            build = ':call mkdp#util#install()',
-        },
-
-        -- 快速跳转
-        {
-            'phaazon/hop.nvim',
-            keys = {
-                {
-                    'f',
-                    function()
-                        require('hop').hint_char1({
-                            direction = require('hop.hint').HintDirection.AFTER_CURSOR,
-                            current_line_only = true,
-                        })
-                    end,
-                },
-                {
-                    'F',
-                    function()
-                        require('hop').hint_char1({
-                            direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
-                            current_line_only = true,
-                        })
-                    end,
-                },
-                {
-                    't',
-                    function()
-                        require('hop').hint_char1({
-                            direction = require('hop.hint').HintDirection.AFTER_CURSOR,
-                            current_line_only = true,
-                            hint_offset = -1,
-                        })
-                    end,
-                },
-                {
-                    'T',
-                    function()
-                        require('hop').hint_char1({
-                            direction = require('hop.hint').HintDirection.BEFORE_CURSOR,
-                            current_line_only = true,
-                            hint_offset = 1,
-                        })
-                    end,
-                },
+            {
+                '<leader>ms',
+                ':MarkdownPreviewStop <CR>',
             },
-            init = function()
-                require('core.mappings').hop()
-            end,
-            config = function()
-                require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
-            end,
         },
+        build = ':call mkdp#util#install()',
+    },
 
-        -- 多光标
-        {
-            'mg979/vim-visual-multi',
-            event = 'VeryLazy',
-        },
-
-        -- 浮窗
-        {
-            'voldikss/vim-floaterm',
-            cmd = { 'FloatermNew', 'FloatermToggle' },
-            config = function()
-                require('plugin-configs.floaterm')
-            end,
-            init = function()
-                require('core.mappings').floaterm()
-            end,
-        },
-
-        { -- Improve folding
-            'kevinhwang91/nvim-ufo',
-            event = 'VeryLazy',
-            dependencies = { 'kevinhwang91/promise-async' },
-            init = function()
-                require('core.mappings').ufo()
-            end,
-            config = function()
-                require('plugin-configs.ufo')
-            end,
-        },
-
-        -- 不错的替换功能
-        -- {
-        --   'cshuaimin/ssr.nvim',
-        --   keys = {
-        --     {
-        --       '<leader>sr',
-        --       function()
-        --         require('ssr').open()
-        --       end,
-        --       mode = { 'n', 'x' },
-        --       desc = 'Structural Replace',
-        --     },
-        --   },
-        --   opts = {
-        --     border = 'single',
-        --   },
-        -- },
-
-        --  ['simrat39/symbols-outline.nvim'] = {
-        --    cmd = {
-        --      'SymbolsOutline',
-        --      'SymbolsOutlineOpen',
-        --      'SymbolsOutlineClose',
-        --    },
-        --    config = function()
-        --      require('symbols-outline').setup()
-        --    end,
-        --  },
-
-        -- Git Diff
-        -- {
-        --   'sindrets/diffview.nvim',
-        --   keys = {
-        --     { '<leader>dv', ':DiffviewOpen<CR>' },
-        --     { '<leader>dc', ':DiffviewClose<CR>' },
-        --     { '<leader>dq', ':DiffviewClose<CR>:q<CR>' },
-        --   },
-        --   cmd = { 'DiffviewOpen', 'DiffviewClose' },
-        -- },
-
-        ------------------------------ 功能组件 ----------------------------------
-    }, config)
+    -- 多光标
+    {
+        'mg979/vim-visual-multi',
+        event = 'VeryLazy',
+    },
 }
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.json", "*.jsonc" },
