@@ -49,7 +49,7 @@ lvim.plugins = {
         "windwp/nvim-autopairs",
         config = function(plugin, opts)
             -- run default AstroNvim config
-            require "plugin.configs.nvim-autopairs"(plugin, opts)
+            require "configs.nvim-autopairs"(plugin, opts)
             -- require Rule function
             local Rule = require "nvim-autopairs.rule"
             local npairs = require "nvim-autopairs"
