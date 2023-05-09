@@ -43,58 +43,58 @@ lvim.plugins = {
     "mxsdev/nvim-dap-vscode-js",
     "petertriho/nvim-scrollbar",
     "renerocksai/telekasten.nvim",
-    -- 自动补全括号
-    -- Autopair
-    { -- override nvim-autopairs plugin
-        "windwp/nvim-autopairs",
-        config = function(plugin, opts)
-            -- run default AstroNvim config
-            -- require Rule function
-            local Rule = require "nvim-autopairs.rule"
-            local npairs = require "nvim-autopairs"
-            npairs.setup(opts)
-            if not vim.g.autopairs_enabled then
-                npairs.disable()
-            end
-            local cmp_status_ok, cmp = pcall(require, "cmp")
-            if cmp_status_ok then
-                cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false })
-            end
-            npairs.add_rules {
-                {
-                    -- specify a list of rules to add
-                    Rule(" ", " "):with_pair(function(options)
-                        local pair = options.line:sub(options.col - 1, options.col)
-                        return vim.tbl_contains({ "()", "[]", "{}" }, pair)
-                    end),
-                    Rule("( ", " )")
-                            :with_pair(function()
-                        return false
-                    end)
-                            :with_move(function(options)
-                        return options.prev_char:match ".%)" ~= nil
-                    end)
-                            :use_key ")",
-                    Rule("{ ", " }")
-                            :with_pair(function()
-                        return false
-                    end)
-                            :with_move(function(options)
-                        return options.prev_char:match ".%}" ~= nil
-                    end)
-                            :use_key "}",
-                    Rule("[ ", " ]")
-                            :with_pair(function()
-                        return false
-                    end)
-                            :with_move(function(options)
-                        return options.prev_char:match ".%]" ~= nil
-                    end)
-                            :use_key "]",
-                },
-            }
-        end,
-    },
+    ---- 自动补全括号
+    ---- Autopair
+    --{ -- override nvim-autopairs plugin
+    --    "windwp/nvim-autopairs",
+    --    config = function(plugin, opts)
+    --        -- run default AstroNvim config
+    --        -- require Rule function
+    --        local Rule = require "nvim-autopairs.rule"
+    --        local npairs = require "nvim-autopairs"
+    --        npairs.setup(opts)
+    --        if not vim.g.autopairs_enabled then
+    --            npairs.disable()
+    --        end
+    --        local cmp_status_ok, cmp = pcall(require, "cmp")
+    --        if cmp_status_ok then
+    --            cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false })
+    --        end
+    --        npairs.add_rules {
+    --            {
+    --                -- specify a list of rules to add
+    --                Rule(" ", " "):with_pair(function(options)
+    --                    local pair = options.line:sub(options.col - 1, options.col)
+    --                    return vim.tbl_contains({ "()", "[]", "{}" }, pair)
+    --                end),
+    --                Rule("( ", " )")
+    --                        :with_pair(function()
+    --                    return false
+    --                end)
+    --                        :with_move(function(options)
+    --                    return options.prev_char:match ".%)" ~= nil
+    --                end)
+    --                        :use_key ")",
+    --                Rule("{ ", " }")
+    --                        :with_pair(function()
+    --                    return false
+    --                end)
+    --                        :with_move(function(options)
+    --                    return options.prev_char:match ".%}" ~= nil
+    --                end)
+    --                        :use_key "}",
+    --                Rule("[ ", " ]")
+    --                        :with_pair(function()
+    --                    return false
+    --                end)
+    --                        :with_move(function(options)
+    --                    return options.prev_char:match ".%]" ~= nil
+    --                end)
+    --                        :use_key "]",
+    --            },
+    --        }
+    --    end,
+    --},
     -- Autocomplete
     {
         'hrsh7th/nvim-cmp',
