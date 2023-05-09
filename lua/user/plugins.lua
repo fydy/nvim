@@ -69,10 +69,10 @@ lvim.plugins = {
   },
   { "christianchiarulli/telescope-tabs", branch = "chris" },
   "monaqa/dial.nvim",
-  {
-    "0x100101/lab.nvim",
-    build = "cd js && npm ci",
-  },
+  --{
+  --  "0x100101/lab.nvim",
+  --  build = "cd js && npm ci",
+  --},
   --{
   --  "zbirenbaum/copilot.lua",
   --  -- cmd = "Copilot",
@@ -85,11 +85,11 @@ lvim.plugins = {
   --    require("copilot_cmp").setup()
   --  end,
   --},
-  {
-    "tzachar/cmp-tabnine",
-    event = "InsertEnter",
-    build = "./install.sh",
-  },
+  --{
+  --  "tzachar/cmp-tabnine",
+  --  event = "InsertEnter",
+  --  build = "./install.sh",
+  --},
 
   "MunifTanjim/nui.nvim",
   "Bryley/neoai.nvim",
