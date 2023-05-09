@@ -167,14 +167,14 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 require('telescope').setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+    extensions = {
+        fzf = {
+            fuzzy = true, -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true, -- override the file sorter
+            case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+        }
     }
-  }
 }
 -- change UI setting of `LspInstallInfo`
 -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
@@ -304,7 +304,7 @@ lvim.plugins = {
         build = "make install_jsregexp"
     },
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim', version = '0.1.1',
         -- or                              , branch = '0.1.1',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
@@ -318,12 +318,48 @@ lvim.plugins = {
     { 'preservim/tagbar', lazy = true },
 
     -- Autopair
-    {
-        'windwp/nvim-autopairs',
-        event = 'InsertEnter',
-        config = function()
-            require('nvim-autopairs').setup {}
-        end
+    { -- override nvim-autopairs plugin
+        "windwp/nvim-autopairs",
+        config = function(plugin, opts)
+            -- run default AstroNvim config
+            require "plugins.configs.nvim-autopairs"(plugin, opts)
+            -- require Rule function
+            local Rule = require "nvim-autopairs.rule"
+            local npairs = require "nvim-autopairs"
+            npairs.add_rules {
+                {
+                    -- specify a list of rules to add
+                    Rule(" ", " "):with_pair(function(options)
+                        local pair = options.line:sub(options.col - 1, options.col)
+                        return vim.tbl_contains({ "()", "[]", "{}" }, pair)
+                    end),
+                    Rule("( ", " )")
+                            :with_pair(function()
+                        return false
+                    end)
+                            :with_move(function(options)
+                        return options.prev_char:match ".%)" ~= nil
+                    end)
+                            :use_key ")",
+                    Rule("{ ", " }")
+                            :with_pair(function()
+                        return false
+                    end)
+                            :with_move(function(options)
+                        return options.prev_char:match ".%}" ~= nil
+                    end)
+                            :use_key "}",
+                    Rule("[ ", " ]")
+                            :with_pair(function()
+                        return false
+                    end)
+                            :with_move(function(options)
+                        return options.prev_char:match ".%]" ~= nil
+                    end)
+                            :use_key "]",
+                },
+            }
+        end,
     },
     {
         "mrjones2014/nvim-ts-rainbow",
@@ -456,7 +492,7 @@ lvim.plugins = {
     {
         "Pocco81/auto-save.nvim",
         config = function()
-            require("auto-save").init()
+            require("auto-save").setup()
         end,
     },
     -- Markdown 预览
