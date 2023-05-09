@@ -244,72 +244,48 @@ lvim.plugins = {
             })
         end,
     },
-    require('lazy').setup({
-        { 'nvim-lua/plenary.nvim', lazy = true },
-        { 'b0o/schemastore.nvim', lazy = true },
-        { 'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu' },
-        { 'nvim-tree/nvim-web-devicons', lazy = true },
-        {
-            'itsuki0927/base46',
-            config = function()
-                local ok, base46 = pcall(require, 'base46')
-                if ok then
-                    base46.load_theme()
-                end
-            end,
-        },
 
-        -- lsp
-        {
-            "L3MON4D3/LuaSnip",
-            -- follow latest release.
-            version = "^1", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-            -- install jsregexp (optional!).
-            build = "make install_jsregexp"
-        },
+    -- lsp
+    {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "^1", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp"
+    },
+    -- Indent line
+    { 'lukas-reineke/indent-blankline.nvim', lazy = true },
 
-        -- 片段
-        {
+    -- Tag viewer
+    { 'preservim/tagbar', lazy = true },
+
+    -- Autopair
+    {
+        'windwp/nvim-autopairs',
+        event = 'InsertEnter',
+        config = function()
+            require('nvim-autopairs').setup {}
+        end
+    },
+
+    -- LSP
+    { 'neovim/nvim-lspconfig', lazy = true },
+
+    -- Autocomplete
+    {
+        'hrsh7th/nvim-cmp',
+        -- load cmp on InsertEnter
+        event = 'InsertEnter',
+        -- these dependencies will only be loaded when cmp loads
+        -- dependencies are always lazy-loaded unless specified otherwise
+        dependencies = {
             'L3MON4D3/LuaSnip',
-            event = 'InsertEnter',
-            config = function()
-                require('plugin-configs.luasnip')
-            end,
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-buffer',
+            'saadparwaiz1/cmp_luasnip',
         },
-        -- Indent line
-        { 'lukas-reineke/indent-blankline.nvim' },
-
-        -- Tag viewer
-        { 'preservim/tagbar' },
-
-        -- Autopair
-        {
-            'windwp/nvim-autopairs',
-            event = 'InsertEnter',
-            config = function()
-                require('nvim-autopairs').setup {}
-            end
-        },
-
-        -- LSP
-        { 'neovim/nvim-lspconfig' },
-
-        -- Autocomplete
-        {
-            'hrsh7th/nvim-cmp',
-            -- load cmp on InsertEnter
-            event = 'InsertEnter',
-            -- these dependencies will only be loaded when cmp loads
-            -- dependencies are always lazy-loaded unless specified otherwise
-            dependencies = {
-                'L3MON4D3/LuaSnip',
-                'hrsh7th/cmp-nvim-lsp',
-                'hrsh7th/cmp-path',
-                'hrsh7th/cmp-buffer',
-                'saadparwaiz1/cmp_luasnip',
-            },
-        },
-    }),
+    },
 
     -- 自动补全括号
     {
