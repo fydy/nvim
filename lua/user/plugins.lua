@@ -94,8 +94,8 @@ lvim.plugins = {
   "MunifTanjim/nui.nvim",
   "Bryley/neoai.nvim",
   "mfussenegger/nvim-dap-python",
-  "nvim-neotest/neotest",
-  "nvim-neotest/neotest-python",
+  --"nvim-neotest/neotest",
+  --"nvim-neotest/neotest-python",
   -- {
   --   "folke/noice.nvim",
   --   event = "VimEnter",
