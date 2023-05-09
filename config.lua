@@ -248,6 +248,7 @@ lvim.plugins = {
         { 'nvim-lua/plenary.nvim', lazy = true },
         { 'b0o/schemastore.nvim', lazy = true },
         { 'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu' },
+        { 'nvim-tree/nvim-web-devicons', lazy = true },
         {
             'itsuki0927/base46',
             config = function()
@@ -274,11 +275,6 @@ lvim.plugins = {
             config = function()
                 require('plugin-configs.luasnip')
             end,
-        },
-        -- File explorer
-        {
-            'nvim-tree/nvim-tree.lua',
-            dependencies = { 'nvim-tree/nvim-web-devicons' },
         },
         -- Indent line
         { 'lukas-reineke/indent-blankline.nvim' },
