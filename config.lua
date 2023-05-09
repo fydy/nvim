@@ -310,6 +310,7 @@ lvim.plugins = {
         dotfiles = true,
       },
     })
+    end,
   },
     -- lsp
     {
