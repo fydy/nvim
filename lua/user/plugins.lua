@@ -43,8 +43,8 @@ lvim.plugins = {
   "mxsdev/nvim-dap-vscode-js",
   "petertriho/nvim-scrollbar",
   "renerocksai/telekasten.nvim",
-  "windwp/nvim-autopairs",
-  "akinsho/toggleterm.nvim",
+  --"windwp/nvim-autopairs",
+  --"akinsho/toggleterm.nvim",
   
   -- "renerocksai/calendar-vim",
   {
