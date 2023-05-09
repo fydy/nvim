@@ -1,4 +1,4 @@
--- lvim.colorscheme = "darkplus"
+lvim.colorscheme = "lunaperche"
 -- lvim.colorscheme = "poimandres"
 lvim.log.level = "warn"
 lvim.builtin.alpha.active = true
