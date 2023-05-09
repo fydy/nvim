@@ -110,7 +110,7 @@ lvim.plugins = {
             'saadparwaiz1/cmp_luasnip',
         },
     },
-    --"akinsho/toggleterm.nvim",
+    "akinsho/toggleterm.nvim",
 
     -- "renerocksai/calendar-vim",
     {
