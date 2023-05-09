@@ -244,6 +244,12 @@ lvim.plugins = {
             })
         end,
     },
+  {
+  "tzachar/cmp-tabnine",
+  build = "./install.sh",
+  dependencies = "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+},
 }
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = { "*.json", "*.jsonc" },
