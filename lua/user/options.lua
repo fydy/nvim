@@ -1,6 +1,7 @@
 lvim.colorscheme = "lunaperche"
 -- lvim.colorscheme = "poimandres"
 lvim.log.level = "warn"
+lvim.format_on_save = true
 lvim.format_on_save.enabled = true
 lvim.format_on_save.pattern = { "*.js", "*.lua", "*.py" }
 lvim.builtin.alpha.active = true
@@ -9,13 +10,13 @@ lvim.reload_config_on_save = false
 lvim.builtin.illuminate.active = true
 lvim.builtin.bufferline.active = true
 lvim.builtin.toggleterm.active = true
--- lvim.builtin.alpha.mode = "dashboard"
+ lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 -- lvim.builtin.nvimtree.setup.view.mappings.custom_only = true
 lvim.builtin.breadcrumbs.active = true
--- lvim.builtin.treesitter.highlight.enabled = true
+ lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.dap.active = true
 lvim.keys.term_mode = { ["<C-l>"] = false }
 -- lvim.builtin.cmp.cmdline.enable = false
