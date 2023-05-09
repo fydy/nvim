@@ -38,17 +38,19 @@ dap.configurations.python = {
         end;
     },
 }
+
 lvim.builtin.which_key.mappings["y"] = { "<cmd>w !python<CR>", "执行当前python文件" }
 lvim.builtin.which_key.mappings["t"] = {
-    name = "Trouble",
-    t = { "<cmd>w !node<CR>", "执行js文件" },
-    r = { "<cmd>Trouble lsp_references<cr>", "References" },
-    f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-    d = { "<cmd>Trouble lsp_document_diagnostics<cr>", "Diagnostics" },
-    q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
-    l = { "<cmd>Trouble loclist<cr>", "LocationList" },
-    w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
+    name = "Diagnostics",
+    j = { "<cmd>w !node<CR>", "执行js文件" },
+    t = { "<cmd>TroubleToggle<cr>", "trouble" },
+    w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "workspace" },
+    d = { "<cmd>TroubleToggle document_diagnostics<cr>", "document" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
+    r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
 }
+
 lvim.builtin.which_key.mappings["S"] = {
     name = "Session",
     c = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
@@ -255,7 +257,10 @@ lvim.plugins = {
     },
     -- Indent line
     { 'lukas-reineke/indent-blankline.nvim', lazy = true },
-
+    {
+        "folke/trouble.nvim",
+        cmd = "TroubleToggle",
+    },
     -- Tag viewer
     { 'preservim/tagbar', lazy = true },
 
