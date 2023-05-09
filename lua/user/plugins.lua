@@ -49,10 +49,17 @@ lvim.plugins = {
         "windwp/nvim-autopairs",
         config = function(plugin, opts)
             -- run default AstroNvim config
-            require "configs.nvim-autopairs"(plugin, opts)
             -- require Rule function
             local Rule = require "nvim-autopairs.rule"
             local npairs = require "nvim-autopairs"
+            npairs.setup(opts)
+            if not vim.g.autopairs_enabled then
+                npairs.disable()
+            end
+            local cmp_status_ok, cmp = pcall(require, "cmp")
+            if cmp_status_ok then
+                cmp.event:on("confirm_done", require("nvim-autopairs.completion.cmp").on_confirm_done { tex = false })
+            end
             npairs.add_rules {
                 {
                     -- specify a list of rules to add
