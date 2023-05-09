@@ -43,7 +43,66 @@ lvim.plugins = {
     "mxsdev/nvim-dap-vscode-js",
     "petertriho/nvim-scrollbar",
     "renerocksai/telekasten.nvim",
-    --"windwp/nvim-autopairs",
+    -- 自动补全括号
+    -- Autopair
+    { -- override nvim-autopairs plugin
+        "windwp/nvim-autopairs",
+        config = function(plugin, opts)
+            -- run default AstroNvim config
+            require "plugin.configs.nvim-autopairs"(plugin, opts)
+            -- require Rule function
+            local Rule = require "nvim-autopairs.rule"
+            local npairs = require "nvim-autopairs"
+            npairs.add_rules {
+                {
+                    -- specify a list of rules to add
+                    Rule(" ", " "):with_pair(function(options)
+                        local pair = options.line:sub(options.col - 1, options.col)
+                        return vim.tbl_contains({ "()", "[]", "{}" }, pair)
+                    end),
+                    Rule("( ", " )")
+                            :with_pair(function()
+                        return false
+                    end)
+                            :with_move(function(options)
+                        return options.prev_char:match ".%)" ~= nil
+                    end)
+                            :use_key ")",
+                    Rule("{ ", " }")
+                            :with_pair(function()
+                        return false
+                    end)
+                            :with_move(function(options)
+                        return options.prev_char:match ".%}" ~= nil
+                    end)
+                            :use_key "}",
+                    Rule("[ ", " ]")
+                            :with_pair(function()
+                        return false
+                    end)
+                            :with_move(function(options)
+                        return options.prev_char:match ".%]" ~= nil
+                    end)
+                            :use_key "]",
+                },
+            }
+        end,
+    },
+    -- Autocomplete
+    {
+        'hrsh7th/nvim-cmp',
+        -- load cmp on InsertEnter
+        event = 'InsertEnter',
+        -- these dependencies will only be loaded when cmp loads
+        -- dependencies are always lazy-loaded unless specified otherwise
+        dependencies = {
+            'L3MON4D3/LuaSnip',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-buffer',
+            'saadparwaiz1/cmp_luasnip',
+        },
+    },
     --"akinsho/toggleterm.nvim",
 
     -- "renerocksai/calendar-vim",
@@ -107,6 +166,13 @@ lvim.plugins = {
     "MunifTanjim/nui.nvim",
     "Bryley/neoai.nvim",
     "mfussenegger/nvim-dap-python",
+    {
+        "Pocco81/auto-save.nvim",
+        config = function()
+            require("auto-save").setup()
+        end,
+    },
+
     --"nvim-neotest/neotest",
     --"nvim-neotest/neotest-python",
     -- {

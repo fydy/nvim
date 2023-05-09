@@ -1,6 +1,8 @@
 lvim.colorscheme = "lunaperche"
 -- lvim.colorscheme = "poimandres"
 lvim.log.level = "warn"
+lvim.format_on_save.enabled = true
+lvim.format_on_save.pattern = { "*.js", "*.lua", "*.py" }
 lvim.builtin.alpha.active = true
 -- lvim.lsp.diagnostics.float.focusable = true
 lvim.reload_config_on_save = false
