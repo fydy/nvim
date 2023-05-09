@@ -314,9 +314,15 @@ lvim.plugins = {
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
     },
+    {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    },
     -- Tag viewer
     { 'preservim/tagbar', lazy = true },
-
+    { 'preservim/nerdcommenter', lazy = true },
     -- Autopair
     { -- override nvim-autopairs plugin
         "windwp/nvim-autopairs",
@@ -494,22 +500,6 @@ lvim.plugins = {
         config = function()
             require("auto-save").setup()
         end,
-    },
-    -- Markdown 预览
-    {
-        'iamcco/markdown-preview.nvim',
-        ft = 'markdown',
-        keys = {
-            {
-                '<leader>mp',
-                ':MarkdownPreview <CR>',
-            },
-            {
-                '<leader>ms',
-                ':MarkdownPreviewStop <CR>',
-            },
-        },
-        build = ':call mkdp#util#install()',
     },
 
     -- 多光标
