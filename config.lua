@@ -161,6 +161,11 @@ lvim.lsp.installer.setup.ensure_installed = {
     "jedi_language_server",
     "tsserver",
 }
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 -- change UI setting of `LspInstallInfo`
 -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
 -- lvim.lsp.installer.setup.ui.check_outdated_servers_on_open = false
@@ -289,11 +294,9 @@ lvim.plugins = {
         build = "make install_jsregexp"
     },
     {
-        "nvim-telescope/telescope-project.nvim",
-        event = "BufWinEnter",
-        setup = function()
-            vim.cmd [[packadd telescope.nvim]]
-        end,
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        -- or                              , branch = '0.1.1',
+        dependencies = { 'nvim-lua/plenary.nvim' }
     },
     -- Indent line
     { 'lukas-reineke/indent-blankline.nvim', lazy = true },
