@@ -244,13 +244,6 @@ lvim.plugins = {
             })
         end,
     },
-    require("lazy").setup({
-        {
-            'tzachar/cmp-tabnine',
-            build = './install.sh',
-            dependencies = 'hrsh7th/nvim-cmp',
-        } }),
-
     require('lazy').setup({
         { 'nvim-lua/plenary.nvim', lazy = true },
         { 'b0o/schemastore.nvim', lazy = true },
