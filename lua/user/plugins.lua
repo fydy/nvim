@@ -170,7 +170,7 @@ lvim.plugins = {
     --  event = "InsertEnter",
     --  build = "./install.sh",
     --},
-
+    { 'michaelb/sniprun', build = 'bash ./install.sh 1' },
     "MunifTanjim/nui.nvim",
     "Bryley/neoai.nvim",
     "mfussenegger/nvim-dap-python",
@@ -180,7 +180,14 @@ lvim.plugins = {
             require("auto-save").setup()
         end,
     },
-
+    {
+        "CRAG666/code_runner.nvim",
+        -- ft = { "c", "py", "sh" },
+        cmd = { "RunFile", "RunClose" },
+        config = function()
+            require("user.configs.code_runner")
+        end,
+    },
     --"nvim-neotest/neotest",
     --"nvim-neotest/neotest-python",
     -- {

@@ -1,6 +1,6 @@
 local M = {}
 
----@class ExecutorOptions
+-- @class ExecutorOptions
 local settings = {}
 
 local utils = require("utils")

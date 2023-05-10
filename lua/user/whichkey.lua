@@ -1,4 +1,4 @@
-lvim.builtin.which_key.mappings["y"] = { "<cmd>w !python<cr>", "执行当前python文件" }
+lvim.builtin.which_key.mappings["y"] = { "<cmd>w !python<cr>", "执行当前文件" }
 lvim.builtin.which_key.mappings["w"] = { "<cmd>w<cr>", "Save" }
 lvim.builtin.which_key.mappings["b"] = { "<cmd>Telescope buffers<cr>", "Buffers" }
 lvim.builtin.which_key.mappings["v"] = { "<cmd>vsplit<cr>", "vsplit" }
@@ -12,6 +12,8 @@ lvim.builtin.which_key.mappings["r"] = {
 	r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
 	w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
 	f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
+	t = { "<cmd>RunFile<cr>", "Code Runner" },
+	c = { "<cmd>RunClose<cr>", "Run Close" },
 }
 --lvim.builtin.which_key.mappings["a"] = {
 --  name = "A.I.",
