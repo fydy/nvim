@@ -185,7 +185,7 @@ lvim.plugins = {
         -- ft = { "c", "py", "sh" },
         cmd = { "RunFile", "RunClose" },
         config = function()
-            require("user.configs.code_runner")
+            require("code_runner").setup()
         end,
     },
     --"nvim-neotest/neotest",
