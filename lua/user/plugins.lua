@@ -155,12 +155,9 @@ lvim.plugins = {
     { "christianchiarulli/telescope-tabs", branch = "chris" },
     "monaqa/dial.nvim",
     {
-        "pianocomposer321/yabs.nvim",
-        after = "telescope",
-        dependencies = { "nvim-lua/plenary.nvim", "pianocomposer321/consolation.nvim" },
-        config = function()
-            require("yabs").setup()
-        end,
+        'stevearc/overseer.nvim',
+        opts = {},
+        require('overseer').setup()
     },
     --{
     --  "0x100101/lab.nvim",
