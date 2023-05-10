@@ -172,8 +172,8 @@ lvim.plugins = {
     --},
     --{ 'michaelb/sniprun', build = 'bash ./install.sh 1' },
     {
-        'pianocomposer321/yabs.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        "pianocomposer321/yabs.nvim",
+        --module = { "yabs", "telescope._extensions.yabs" },
     },
     "MunifTanjim/nui.nvim",
     "Bryley/neoai.nvim",
@@ -187,7 +187,7 @@ lvim.plugins = {
     {
         "CRAG666/code_runner.nvim",
         -- ft = { "c", "py", "sh" },
-        cmd = { "RunFile", "RunClose" },
+        --cmd = { "RunFile", "RunClose" },
         config = function()
             require("code_runner").setup()
         end,

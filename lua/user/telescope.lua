@@ -179,7 +179,9 @@ lvim.builtin.telescope.pickers.lsp_implementations = {
   theme = "dropdown",
   initial_mode = "normal",
 }
-
+require('telescope').load_extension('fzf')
+require('telescope').load_extension('hop')
+require('telescope').load_extension('yabs')
 require("telescope-tabs").setup {
   show_preview = false,
   close_tab_shortcut = "C-d",
