@@ -44,6 +44,11 @@ lvim.plugins = {
     "petertriho/nvim-scrollbar",
     "renerocksai/telekasten.nvim",
     "shawnyu5/executor.nvim",
+    --{
+    --    'jedrzejboczar/toggletasks.nvim',
+    --    -- To enable YAML config support
+    --    rocks = 'lyaml',
+    --},
     ---- 自动补全括号
     ---- Autopair
     --{ -- override nvim-autopairs plugin
@@ -171,10 +176,10 @@ lvim.plugins = {
     --  build = "./install.sh",
     --},
     --{ 'michaelb/sniprun', build = 'bash ./install.sh 1' },
-    {
-        "pianocomposer321/yabs.nvim",
-        --module = { "yabs", "telescope._extensions.yabs" },
-    },
+    --{
+    --    "pianocomposer321/yabs.nvim",
+    --    --module = { "yabs", "telescope._extensions.yabs" },
+    --},
     "MunifTanjim/nui.nvim",
     "Bryley/neoai.nvim",
     "mfussenegger/nvim-dap-python",
