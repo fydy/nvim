@@ -171,6 +171,10 @@ lvim.plugins = {
     --  build = "./install.sh",
     --},
     --{ 'michaelb/sniprun', build = 'bash ./install.sh 1' },
+    {
+        'pianocomposer321/yabs.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
     "MunifTanjim/nui.nvim",
     "Bryley/neoai.nvim",
     "mfussenegger/nvim-dap-python",
