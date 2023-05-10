@@ -111,10 +111,10 @@ lvim.plugins = {
     --        'saadparwaiz1/cmp_luasnip',
     --    },
     --},
-    {
-        "michaelb/sniprun",
-        build = "bash install.sh",
-    },
+    --{
+    --    "michaelb/sniprun",
+    --    build = "bash install.sh",
+    --},
     "akinsho/toggleterm.nvim",
 
     -- "renerocksai/calendar-vim",

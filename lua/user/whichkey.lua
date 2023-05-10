@@ -15,10 +15,10 @@ lvim.builtin.which_key.mappings["r"] = {
     t = { "<cmd>RunFile<cr>", "Code Runner" },
     c = { "<cmd>RunClose<cr>", "Run Close" },
     l = { "<cmd>SnipRun<cr>", "Run Line" },
-    o = { "<cmd>SnipRunOperator<cr>", "Run Operator" },
-    y = { "<cmd>SnipReset<cr>", "Reset" },
-    b = { "<cmd>SnipClose<cr>", "Close" },
-    u = { "<cmd>%SnipRun<cr>", "Run file" },
+    --o = { "<cmd>SnipRunOperator<cr>", "Run Operator" },
+    --y = { "<cmd>SnipReset<cr>", "Reset" },
+    --b = { "<cmd>SnipClose<cr>", "Close" },
+    --u = { "<cmd>%SnipRun<cr>", "Run file" },
 }
 --lvim.builtin.which_key.mappings["a"] = {
 --  name = "A.I.",
