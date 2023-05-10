@@ -72,7 +72,6 @@ reload "user.scrollbar"
 reload "user.whichkey"
 reload "user.neoai"
 reload "user.code_runner"
-reload "user.snip"
 -- lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 local opts = { noremap = true, silent = true }
