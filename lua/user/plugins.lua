@@ -43,6 +43,7 @@ lvim.plugins = {
     "mxsdev/nvim-dap-vscode-js",
     "petertriho/nvim-scrollbar",
     "renerocksai/telekasten.nvim",
+    "shawnyu5/executor.nvim",
     ---- 自动补全括号
     ---- Autopair
     --{ -- override nvim-autopairs plugin
