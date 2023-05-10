@@ -170,7 +170,7 @@ lvim.plugins = {
     --  event = "InsertEnter",
     --  build = "./install.sh",
     --},
-    { 'michaelb/sniprun', build = 'bash ./install.sh 1' },
+    --{ 'michaelb/sniprun', build = 'bash ./install.sh 1' },
     "MunifTanjim/nui.nvim",
     "Bryley/neoai.nvim",
     "mfussenegger/nvim-dap-python",
