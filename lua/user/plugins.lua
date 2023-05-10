@@ -116,10 +116,6 @@ lvim.plugins = {
     --    build = "bash install.sh",
     --},
     "akinsho/toggleterm.nvim",
-    {
-        'stevearc/overseer.nvim',
-        opts = {},
-    },
     -- "renerocksai/calendar-vim",
     {
         "saecki/crates.nvim",
