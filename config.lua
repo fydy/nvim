@@ -453,6 +453,17 @@ lvim.plugins = {
             require('nvim-autopairs').setup {}
         end,
     },
+
+    {
+        'fagci/runfile.nvim', 
+        config = function()
+            require('runfile').setup({
+                mappings = {
+                    ['zsh'] = 'zsh {f} {a}'
+                }
+            })
+        end,
+    },
     -- 自动关闭标签
     {
         'windwp/nvim-ts-autotag',
