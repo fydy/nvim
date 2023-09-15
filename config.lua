@@ -196,7 +196,7 @@ lvim.builtin.treesitter.textobjects = {
 lvim.lsp.installer.setup.ensure_installed = {
     "jsonls",
     "pyright",
-    "jedi_language_server",
+--    "jedi_language_server",
     "tsserver",
 }
 local builtin = require('telescope.builtin')
