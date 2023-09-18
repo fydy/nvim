@@ -348,7 +348,13 @@ lvim.plugins = {
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
-      }
+
+      },
+    config = function()
+      require("notify").setup({
+        background_colour = "#000000",
+      })
+    end,
     },
     {
         'nvimdev/lspsaga.nvim',
@@ -357,7 +363,7 @@ lvim.plugins = {
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons',    -- optional
+            'nvim-tree/nvim-web-devicons',     -- optional
         }
     },
     {
