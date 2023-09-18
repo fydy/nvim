@@ -336,10 +336,10 @@ lvim.plugins = {
     },
     -- lazy.nvim
     {
-        "folke/noice.nvim",
-        event = "VeryLazy",
-        opts = {
-            -- add any options here
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
     }, 
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
@@ -356,8 +356,8 @@ lvim.plugins = {
             require('lspsaga').setup({})
         end,
         dependencies = {
-            'nvim-treesitter/nvim-treesitter' -- optional
-            'nvim-tree/nvim-web-devicons'     -- optional
+            'nvim-treesitter/nvim-treesitter', -- optional
+            'nvim-tree/nvim-web-devicons',    -- optional
         }
     },
     {
