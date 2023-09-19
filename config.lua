@@ -343,11 +343,19 @@ lvim.builtin.telescope.on_config_done = function(telescope)
     pcall(telescope.load_extension, "neoclip")
     -- any other extensions loading
 end
-require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls",},
-}
+
 -- Additional Plugins
 lvim.plugins = {
+    {
+        {"williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",},
+        config = function()
+        require("mason-lspconfig").setup {
+            ensure_installed = { "lua_ls",},
+        }
+    end,
+    },
     { "lunarvim/colorschemes", lazy = true, },
     {
         "Manas140/run.nvim",
