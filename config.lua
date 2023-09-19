@@ -343,27 +343,14 @@ lvim.builtin.telescope.on_config_done = function(telescope)
     pcall(telescope.load_extension, "neoclip")
     -- any other extensions loading
 end
+require("mason-registry").register_aliases {
+  ["lua-language-server"] = { "lua_ls" }
+}
+require("mason-lspconfig").setup {
+    ensure_installed = { "lua_ls",},
+}
 -- Additional Plugins
 lvim.plugins = {
-    {
-        "neovim/nvim-lspconfig",
-        config = function()
-            require("lspconfig")[lua_ls].setup {}
-        end,
-        -- Next, you can provide targeted overrides for specific servers.
-        ["lua_ls"] = function()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup {
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" }
-                        }
-                    }
-                }
-            }
-        end,
-    },
     { "lunarvim/colorschemes", lazy = true, },
     {
         "Manas140/run.nvim",
