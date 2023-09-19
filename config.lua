@@ -192,12 +192,66 @@ lvim.builtin.treesitter.textobjects = {
         },
     },
 }
+lvim.builtin.telescope.defaults.mappings.i = {
+    ["<esc>"] = require('telescope.actions').close,
+}
 
+lvim.builtin.telescope.defaults = {
+    mappings = {
+        i = {
+            ["<esc>"] = require('telescope.actions').close,
+        }
+    },
+    vimgrep_arguments = {
+        "rg",
+        "--color=never",
+        "--no-heading",
+        "--with-filename",
+        "--line-number",
+        "--column",
+        "--smart-case",
+    },
+    prompt_prefix = "   ",
+    selection_caret = "  ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
+    layout_strategy = "horizontal",
+    layout_config = {
+        horizontal = {
+            prompt_position = "top",
+            preview_width = 0.7,
+            results_width = 0.8,
+        },
+        vertical = {
+            mirror = false,
+        },
+        width = 0.95,
+        height = 0.92,
+        preview_cutoff = 120,
+    },
+    file_sorter = require("telescope.sorters").get_fuzzy_file,
+    file_ignore_patterns = { "node_modules" },
+    generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    path_display = { "truncate" },
+    winblend = 0,
+    border = {},
+    borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    color_devicons = true,
+    use_less = true,
+    set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    -- Developer configurations: Not meant for general override
+    buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+}
 -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
     "jsonls",
     "pyright",
---    "jedi_language_server",
+    --    "jedi_language_server",
     "tsserver",
 }
 local builtin = require('telescope.builtin')
@@ -292,29 +346,29 @@ end
 lvim.plugins = {
     { "lunarvim/colorschemes", lazy = true, },
     {
-      "Manas140/run.nvim",
-      config = function ()
-        require('run').setup()
-      end,
+        "Manas140/run.nvim",
+        config = function()
+            require('run').setup()
+        end,
     },
     -- { 'michaelb/sniprun', build = 'sh ./install.sh'},
     {
-    "michaelb/sniprun",
-    event = 'VeryLazy',
-    build = "bash ./install.sh",
-    config = function()
-      -- HACK: https://michaelb.github.io/sniprun/sources/README.html#usage
-      require("sniprun").setup {
-        live_mode_toggle = "enable",
-        display = {
-          "Classic",     --# display results in the command-line  area
-          "VirtualText", --# display ok results as virtual text (multiline is shortened)
-          "Terminal",
-        },
-        live_display = { "VirtualText", "Terminal" },
-      }
-    end,
-  },
+        "michaelb/sniprun",
+        event = 'VeryLazy',
+        build = "bash ./install.sh",
+        config = function()
+            -- HACK: https://michaelb.github.io/sniprun/sources/README.html#usage
+            require("sniprun").setup {
+                live_mode_toggle = "enable",
+                display = {
+                    "Classic", --# display results in the command-line  area
+                    "VirtualText", --# display ok results as virtual text (multiline is shortened)
+                    "Terminal",
+                },
+                live_display = { "VirtualText", "Terminal" },
+            }
+        end,
+    },
     {
         "stevearc/dressing.nvim",
         -- lazy = true,
@@ -360,25 +414,32 @@ lvim.plugins = {
     },
     -- lazy.nvim
     {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    }, 
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-
-      },
-    -- config = function()
-    --  require("notify").setup({
-    --    background_colour = "#000000",
-    --  })
-    -- end,
+        "folke/noice.nvim",
+        config = function()
+            require("noice").setup({
+                lsp = {
+                    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                    override = {
+                        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                        ["vim.lsp.util.stylize_markdown"] = true,
+                        ["cmp.entry.get_documentation"] = true,
+                    },
+                },
+                -- you can enable a preset for easier configuration
+                presets = {
+                    bottom_search = true, -- use a classic bottom cmdline for search
+                    command_palette = true, -- position the cmdline and popupmenu together
+                    long_message_to_split = true, -- long messages will be sent to a split
+                    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = false, -- add a border to hover docs and signature help
+                },
+            })
+        end,
+        event = "VeryLazy",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "rcarriga/nvim-notify",
+        }
     },
     {
         'nvimdev/lspsaga.nvim',
@@ -387,123 +448,123 @@ lvim.plugins = {
         end,
         dependencies = {
             'nvim-treesitter/nvim-treesitter', -- optional
-            'nvim-tree/nvim-web-devicons',     -- optional
+            'nvim-tree/nvim-web-devicons', -- optional
         }
     },
 
-  {
-  "folke/zen-mode.nvim",
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    window = {
-      backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-      -- height and width can be:
-      -- * an absolute number of cells when > 1
-      -- * a percentage of the width / height of the editor when <= 1
-      -- * a function that returns the width or the height
-      width = 90, -- width of the Zen window
-      height = 0.9, -- height of the Zen window
-      -- by default, no options are changed for the Zen window
-      -- uncomment any of the options below, or add other vim.wo options you want to apply
-      options = {
-        signcolumn = "no", -- disable signcolumn
-        number = false, -- disable number column
-        relativenumber = false, -- disable relative numbers
-        -- cursorline = false, -- disable cursorline
-        -- cursorcolumn = false, -- disable cursor column
-        -- foldcolumn = "0", -- disable fold column
-        list = false, -- disable whitespace characters
-      },
-    },
-    plugins = {
-      -- disable some global vim options (vim.o...)
-      -- comment the lines to not apply the options
-      options = {
-        enabled = true,
-        ruler = false, -- disables the ruler text in the cmd line area
-        showcmd = false, -- disables the command in the last line of the screen
-      },
-      twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
-      gitsigns = { enabled = true }, -- disables git signs
-      tmux = { enabled = true }, -- disables the tmux statusline
-      -- this will change the font size on kitty when in zen mode
-      -- to make this work, you need to set the following kitty options:
-      -- - allow_remote_control socket-only
-      -- - listen_on unix:/tmp/kitty
-      kitty = {
-        enabled = false,
-        font = "+4", -- font size increment
-      },
-      -- this will change the font size on alacritty when in zen mode
-      -- requires  Alacritty Version 0.10.0 or higher
-      -- uses `alacritty msg` subcommand to change font size
-      alacritty = {
-        enabled = true,
-        font = "22", -- font size
-      },
-      -- this will change the font size on wezterm when in zen mode
-      -- See alse also the Plugins/Wezterm section in this projects README
-      wezterm = {
-        enabled = false,
-        -- can be either an absolute font size or the number of incremental steps
-        font = "+4", -- (10% increase per step)
-      },
-    },
-  },
-  },
-
-  -- Treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "bash",
-        "help",
-        "html",
-        "css",
-        "javascript",
-        "json",
-        "lua",
-        "markdown",
-        "markdown_inline",
-        "query",
-        "regex",
-        "tsx",
-        "vim",
-        "yaml",
-        "dockerfile",
-        "python",
-      },
-    },
-  },
-
-  -- For the transparent background in Lazyvim
-  {
-    "folke/tokyonight.nvim",
-    lazy = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
-  },
-
-  -- Nvim-Notify
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-          background_colour = "#2E3440",
-          stages = "static",
-          timeout = 1500,
+    {
+        "folke/zen-mode.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            window = {
+                backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+                -- height and width can be:
+                -- * an absolute number of cells when > 1
+                -- * a percentage of the width / height of the editor when <= 1
+                -- * a function that returns the width or the height
+                width = 90, -- width of the Zen window
+                height = 0.9, -- height of the Zen window
+                -- by default, no options are changed for the Zen window
+                -- uncomment any of the options below, or add other vim.wo options you want to apply
+                options = {
+                    signcolumn = "no", -- disable signcolumn
+                    number = false, -- disable number column
+                    relativenumber = false, -- disable relative numbers
+                    -- cursorline = false, -- disable cursorline
+                    -- cursorcolumn = false, -- disable cursor column
+                    -- foldcolumn = "0", -- disable fold column
+                    list = false, -- disable whitespace characters
+                },
+            },
+            plugins = {
+                -- disable some global vim options (vim.o...)
+                -- comment the lines to not apply the options
+                options = {
+                    enabled = true,
+                    ruler = false, -- disables the ruler text in the cmd line area
+                    showcmd = false, -- disables the command in the last line of the screen
+                },
+                twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+                gitsigns = { enabled = true }, -- disables git signs
+                tmux = { enabled = true }, -- disables the tmux statusline
+                -- this will change the font size on kitty when in zen mode
+                -- to make this work, you need to set the following kitty options:
+                -- - allow_remote_control socket-only
+                -- - listen_on unix:/tmp/kitty
+                kitty = {
+                    enabled = false,
+                    font = "+4", -- font size increment
+                },
+                -- this will change the font size on alacritty when in zen mode
+                -- requires  Alacritty Version 0.10.0 or higher
+                -- uses `alacritty msg` subcommand to change font size
+                alacritty = {
+                    enabled = true,
+                    font = "22", -- font size
+                },
+                -- this will change the font size on wezterm when in zen mode
+                -- See alse also the Plugins/Wezterm section in this projects README
+                wezterm = {
+                    enabled = false,
+                    -- can be either an absolute font size or the number of incremental steps
+                    font = "+4", -- (10% increase per step)
+                },
+            },
         },
-  --  }
-  -- lazy = {
-  --     background_colour = "#000000",
-  --   },
-  },
+    },
+
+    -- Treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        opts = {
+            ensure_installed = {
+                "bash",
+                "help",
+                "html",
+                "css",
+                "javascript",
+                "json",
+                "lua",
+                "markdown",
+                "markdown_inline",
+                "query",
+                "regex",
+                "tsx",
+                "vim",
+                "yaml",
+                "dockerfile",
+                "python",
+            },
+        },
+    },
+
+    -- For the transparent background in Lazyvim
+    {
+        "folke/tokyonight.nvim",
+        lazy = {
+            transparent = true,
+            styles = {
+                sidebars = "transparent",
+                floats = "transparent",
+            },
+        },
+    },
+
+    -- Nvim-Notify
+    {
+        "rcarriga/nvim-notify",
+        opts = {
+            background_colour = "#2E3440",
+            stages = "static",
+            timeout = 1500,
+        },
+        --  }
+        -- lazy = {
+        --     background_colour = "#000000",
+        --   },
+    },
     {
         "nvim-tree/nvim-tree.lua",
         version = "*",
@@ -543,8 +604,34 @@ lvim.plugins = {
     { 'lukas-reineke/indent-blankline.nvim', lazy = true },
     {
         "folke/trouble.nvim",
+        lazy = true,
         dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("trouble").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end,
         cmd = "TroubleToggle",
+    },
+    {
+        "folke/neodev.nvim",
+        ft = 'lua',
+    },
+    {
+        'ThePrimeagen/harpoon',
+        event = 'VeryLazy'
+    },
+    {
+        'ThePrimeagen/refactoring.nvim',
+        event = 'VeryLazy',
+    },
+    -- { 'preservim/vimux' },
+    { 'ibhagwan/fzf-lua' },
+    {
+        "RRethy/vim-illuminate",
+        lazy = true
     },
     {
         'numToStr/Comment.nvim',
@@ -632,7 +719,7 @@ lvim.plugins = {
     },
 
     {
-        'fagci/runfile.nvim', 
+        'fagci/runfile.nvim',
         config = function()
             require('runfile').setup({
                 mappings = {
