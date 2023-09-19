@@ -253,7 +253,7 @@ lvim.lsp.installer.setup.ensure_installed = {
     "pyright",
     --    "jedi_language_server",
     "tsserver",
-    "lua_ls",
+    -- "lua_ls",
 }
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -343,9 +343,6 @@ lvim.builtin.telescope.on_config_done = function(telescope)
     pcall(telescope.load_extension, "neoclip")
     -- any other extensions loading
 end
-require("mason-registry").register_aliases {
-  ["lua-language-server"] = { "lua_ls" }
-}
 require("mason-lspconfig").setup {
     ensure_installed = { "lua_ls",},
 }
