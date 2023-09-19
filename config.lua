@@ -1,6 +1,6 @@
 --[[
 lvim is the global options object
-
+i=1
 Linters should be
 filled in as strings with either
 a global executable or a path to
@@ -253,6 +253,7 @@ lvim.lsp.installer.setup.ensure_installed = {
     "pyright",
     --    "jedi_language_server",
     "tsserver",
+    "lua_ls",
 }
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
