@@ -354,7 +354,6 @@ lvim.plugins = {
         ["lua_ls"] = function()
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup {
-                cmd = { "/data/data/com.termux/files/usr/bin/lua-language-server" },
                 settings = {
                     Lua = {
                         diagnostics = {
