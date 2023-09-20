@@ -504,12 +504,6 @@ lvim.plugins = {
         end,
     },
     {
-        "tzachar/cmp-tabnine",
-        build = "./install.sh",
-        dependencies = "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-    },
-    {
         "phaazon/hop.nvim",
         event = "BufRead",
         config = function()
