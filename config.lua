@@ -651,6 +651,25 @@ lvim.plugins = {
             },
         },
     },
+    {
+        "nvim-neotest/neotest-python",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-neotest/neotest",
+        },
+        event = "VeryLazy",
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-python")({
+                        dap = { justMyCode = false },
+                    }),
+                },
+            })
+        end,
+    },
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
