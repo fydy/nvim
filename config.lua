@@ -482,6 +482,78 @@ lvim.plugins = {
     --{ "nvim-neotest/neotest-python" },
     --{ "mfussenegger/nvim-dap" },
     --{ "mfussenegger/nvim-dap-python" },
+    {
+        "camspiers/snap",
+        rocks = "fzy",
+        config = function()
+            local snap = require "snap"
+            local layout = snap.get("layout").bottom
+            local file = snap.config.file:with { consumer = "fzy", layout = layout }
+            local vimgrep = snap.config.vimgrep:with { layout = layout }
+            snap.register.command("find_files", file { producer = "ripgrep.file" })
+            snap.register.command("buffers", file { producer = "vim.buffer" })
+            snap.register.command("oldfiles", file { producer = "vim.oldfile" })
+            snap.register.command("live_grep", vimgrep {})
+        end,
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "BufRead",
+        config = function()
+            require "lsp_signature".on_attach()
+        end,
+    },
+    {
+        "tzachar/cmp-tabnine",
+        build = "./install.sh",
+        dependencies = "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+    },
+    {
+        "phaazon/hop.nvim",
+        event = "BufRead",
+        config = function()
+            require("hop").setup()
+            vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+            vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+        end,
+    },
+    {
+        "ggandor/leap.nvim",
+        name = "leap",
+        config = function()
+            require("leap").add_default_mappings()
+        end,
+    },
+
+    {
+        "folke/todo-comments.nvim",
+        event = "BufRead",
+        config = function()
+            require("todo-comments").setup()
+        end,
+    },
+
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({})
+        end,
+    },
+
+    {
+        "zbirenbaum/copilot-cmp",
+        event = "InsertEnter",
+        dependencies = { "zbirenbaum/copilot.lua" },
+        config = function()
+            vim.defer_fn(function()
+                require("copilot").setup() -- https://github.com/zbirenbaum/copilot.lua/blob/master/README.md#setup-and-configuration
+                require("copilot_cmp").setup() -- https://github.com/zbirenbaum/copilot-cmp/blob/master/README.md#configuration
+            end, 100)
+        end,
+    },
     { "christianchiarulli/telescope-tabs", branch = "chris" },
     { "lunarvim/colorschemes", lazy = true, },
     --{
