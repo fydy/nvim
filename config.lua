@@ -143,7 +143,6 @@ lvim.builtin.which_key.mappings["dF"] = {
     "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
 lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
-
 -- binding for switching
 lvim.builtin.which_key.mappings["C"] = {
     name = "Python",
