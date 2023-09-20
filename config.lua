@@ -651,7 +651,7 @@ lvim.plugins = {
             },
         },
     },
-
+    { "nvim-neotest/neotest-python" },
     {
         "nvim-neotest/neotest",
         dependencies = {
@@ -687,7 +687,6 @@ lvim.plugins = {
                 })
             }
         })
-
     },
     -- Treesitter
     {
