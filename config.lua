@@ -653,7 +653,6 @@ lvim.plugins = {
     },
     {
         "nvim-neotest/neotest",
-        event = "BufReadPost",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
@@ -663,32 +662,8 @@ lvim.plugins = {
         config = function()
             require("neotest").setup({
                 adapters = {
-                    require("neotest-python")({
-                        args = { "-vvv", "--no-cov", "--disable-warnings" },
-                    }),
-                },
-                quickfix = {
-                    enabled = false,
-                    open = false,
-                },
-                output = {
-                    enabled = true,
-                    open_on_run = false,
-                },
-                floating = {
-                    border = "rounded",
-                    max_height = 0.9,
-                    max_width = 0.9,
-                    options = {},
-                },
-                summary = {
-                    open = "botright vsplit | vertical resize 60",
-                },
-                status = {
-                    enabled = true,
-                    signs = true,
-                    virtual_text = false,
-                },
+                    require("neotest-python")
+                }
             })
         end,
     },
