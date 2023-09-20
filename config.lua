@@ -20,7 +20,6 @@ lvim.builtin.terminal.persist_mode = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.breadcrumbs.active = true
-lvim.builtin.dap.active = true
 
 vim.opt.showtabline = 0
 
@@ -86,16 +85,41 @@ end
 
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
+-- setup debug adapter
+
+lvim.builtin.dap.active = true
+local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
+pcall(function()
+    require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+end)
+
+-- setup testing
+require("neotest").setup({
+    adapters = {
+        require("neotest-python")({
+            -- Extra arguments for nvim-dap configuration
+            -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+            dap = {
+                justMyCode = false,
+                console = "integratedTerminal",
+            },
+            args = { "--log-level", "DEBUG", "--quiet" },
+            runner = "pytest",
+        })
+    }
+})
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "space"
-local dap = require('dap')
--- DAP Python
-dap.adapters.python = {
-    type = 'executable',
-    command = '/data/data/com.termux/files/usr/bin/python',
-    --args = { '-m', 'debugpy.adapter' };
-}
+--lvim.leader = "space"
+--local dap = require('dap')
+---- DAP Python
+--dap.adapters.python = {
+--    type = 'executable',
+--    command = '/data/data/com.termux/files/usr/bin/python',
+--    --args = { '-m', 'debugpy.adapter' };
+--}
+
+
 
 dap.configurations.python = {
     {
@@ -107,6 +131,23 @@ dap.configurations.python = {
             return '/data/data/com.termux/files/usr/bin/python'
         end,
     },
+}
+
+lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>",
+                                          "Test Method" }
+lvim.builtin.which_key.mappings["dM"] = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+                                          "Test Method DAP" }
+lvim.builtin.which_key.mappings["df"] = {
+    "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>", "Test Class" }
+lvim.builtin.which_key.mappings["dF"] = {
+    "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", "Test Class DAP" }
+lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+
+
+-- binding for switching
+lvim.builtin.which_key.mappings["C"] = {
+    name = "Python",
+    c = { "<cmd>lua require('swenv.api').pick_venv()<cr>", "Choose Env" },
 }
 
 -- lvim.builtin.which_key.mappings["y"] = { "<cmd>w !python<CR>", "执行当前python文件" }
@@ -437,6 +478,11 @@ end
 
 -- Additional Plugins
 lvim.plugins = {
+    { "ChristianChiarulli/swenv.nvim" },
+    { "stevearc/dressing.nvim" },
+    { "mfussenegger/nvim-dap-python" },
+    { "nvim-neotest/neotest" },
+    { "nvim-neotest/neotest-python" },
     { "christianchiarulli/telescope-tabs", branch = "chris" },
     { "lunarvim/colorschemes", lazy = true, },
     --{
@@ -651,25 +697,25 @@ lvim.plugins = {
             },
         },
     },
-    {
-        "nvim-neotest/neotest-python",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-neotest/neotest",
-        },
-        event = "VeryLazy",
-        config = function()
-            require("neotest").setup({
-                adapters = {
-                    require("neotest-python")({
-                        dap = { justMyCode = false },
-                    }),
-                },
-            })
-        end,
-    },
+    --{
+    --    "nvim-neotest/neotest-python",
+    --    dependencies = {
+    --        "nvim-lua/plenary.nvim",
+    --        "nvim-treesitter/nvim-treesitter",
+    --        "antoinemadec/FixCursorHold.nvim",
+    --        "nvim-neotest/neotest",
+    --    },
+    --    event = "VeryLazy",
+    --    config = function()
+    --        require("neotest").setup({
+    --            adapters = {
+    --                require("neotest-python")({
+    --                    dap = { justMyCode = false },
+    --                }),
+    --            },
+    --        })
+    --    end,
+    --},
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
