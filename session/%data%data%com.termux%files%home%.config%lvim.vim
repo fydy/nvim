@@ -13,17 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 config.lua
+badd +289 /storage/emulated/0/Documents/Pydroid3/pdg2pdf.py
+badd +883 config.lua
 argglobal
 %argdel
 edit config.lua
 argglobal
-let s:l = 390 - ((12 * winheight(0) + 12) / 25)
+let s:l = 449 - ((24 * winheight(0) + 12) / 25)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 390
-normal! 018|
+keepjumps 449
+normal! 013|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

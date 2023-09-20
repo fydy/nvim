@@ -14,6 +14,76 @@ lvim.format_on_save.enabled = true
 lvim.format_on_save.pattern = { "*.js", "*.lua", "*.py" }
 lvim.colorscheme = "lunaperche"
 lvim.transparent_window = true
+lvim.builtin.illuminate.active = false
+lvim.builtin.bufferline.active = false
+lvim.builtin.terminal.persist_mode = false
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.breadcrumbs.active = true
+lvim.builtin.dap.active = true
+
+vim.opt.showtabline = 0
+
+local options = {
+  backup = false,                          -- creates a backup file
+  clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
+  cmdheight = 1,                           -- more space in the neovim command line for displaying messages
+  completeopt = { "menuone", "noselect" }, -- mostly just for cmp
+  conceallevel = 0,                        -- so that `` is visible in markdown files
+  fileencoding = "utf-8",                  -- the encoding written to a file
+  hlsearch = true,                         -- highlight all matches on previous search pattern
+  ignorecase = true,                       -- ignore case in search patterns
+  mouse = "a",                             -- allow the mouse to be used in neovim
+  pumheight = 10,                          -- pop up menu height
+  showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
+  showtabline = 0,                         -- always show tabs
+  smartcase = true,                        -- smart case
+  smartindent = true,                      -- make indenting smarter again
+  splitbelow = true,                       -- force all horizontal splits to go below current window
+  splitright = true,                       -- force all vertical splits to go to the right of current window
+  swapfile = false,                        -- creates a swapfile
+  termguicolors = true,                    -- set term gui colors (most terminals support this)
+  timeoutlen = 1000,                       -- time to wait for a mapped sequence to complete (in milliseconds)
+  undofile = true,                         -- enable persistent undo
+  updatetime = 100,                        -- faster completion (4000ms default)
+  writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+  expandtab = true,                        -- convert tabs to spaces
+  shiftwidth = 2,                          -- the number of spaces inserted for each indentation
+  tabstop = 2,                             -- insert 2 spaces for a tab
+  cursorline = true,                       -- highlight the current line
+  number = true,                           -- set numbered lines
+  laststatus = 3,
+  showcmd = false,
+  ruler = false,
+  relativenumber = true, -- set relative numbered lines
+  numberwidth = 4,       -- set number column width to 2 {default 4}
+  signcolumn = "yes",    -- always show the sign column, otherwise it would shift the text each time
+  wrap = false,          -- display lines as one long line
+  scrolloff = 0,
+  sidescrolloff = 8,
+  guifont = "monospace:h17", -- the font used in graphical neovim applications
+  title = true,
+  titleold = vim.split(os.getenv("SHELL") or "", "/")[3],
+  -- colorcolumn = "80",
+  -- colorcolumn = "120",
+}
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+-- vim.opt.fillchars.eob = " "
+-- vim.opt.fillchars = vim.opt.fillchars + "vertleft: "
+-- vim.opt.fillchars = vim.opt.fillchars + "vertright: "
+vim.opt.fillchars = vim.opt.fillchars + "eob: "
+vim.opt.fillchars:append {
+  stl = " ",
+}
+
+vim.opt.shortmess:append "c"
+
+for k, v in pairs(options) do
+  vim.opt[k] = v
+end
+
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -367,7 +437,38 @@ end
 
 -- Additional Plugins
 lvim.plugins = {
-  { "lunarvim/colorschemes",               lazy = true, },
+  { "christianchiarulli/telescope-tabs", branch = "chris" },
+  { "lunarvim/colorschemes",             lazy = true, },
+  {
+    "NvChad/nvim-colorizer.lua",
+    require("colorizer").setup {
+      filetypes = { "*" },
+      user_default_options = {
+        RGB = true,          -- #RGB hex codes
+        RRGGBB = true,       -- #RRGGBB hex codes
+        names = true,        -- "Name" codes like Blue or blue
+        RRGGBBAA = false,    -- #RRGGBBAA hex codes
+        AARRGGBB = false,    -- 0xAARRGGBB hex codes
+        rgb_fn = false,      -- CSS rgb() and rgba() functions
+        hsl_fn = false,      -- CSS hsl() and hsla() functions
+        css = false,         -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = false,      -- Enable all CSS *functions*: rgb_fn, hsl_fn
+        -- Available modes for `mode`: foreground, background,  virtualtext
+        mode = "background", -- Set the display mode.
+        -- Available methods are false / true / "normal" / "lsp" / "both"
+        -- True is same as normal
+        tailwind = false,                                -- Enable tailwind colors
+        -- parsers can contain values used in |user_default_options|
+        sass = { enable = false, parsers = { "css" }, }, -- Enable sass colors
+        virtualtext = "■",
+        -- update color values even if buffer is not focused
+        -- example use: cmp_menu, cmp_docs
+        always_update = false
+      },
+      -- all the sub-options of filetypes apply to buftypes
+      buftypes = {},
+    }
+  },
   {
     "Manas140/run.nvim",
     config = function()
