@@ -16,6 +16,7 @@ endif
 badd +1 /storage/emulated/0/Documents/Pydroid3/pdg2pdf.py
 argglobal
 %argdel
+$argadd /storage/emulated/0/Documents/Pydroid3/pdg2pdf.py
 edit /storage/emulated/0/Documents/Pydroid3/pdg2pdf.py
 argglobal
 let s:l = 1 - ((0 * winheight(0) + 12) / 25)
