@@ -1,6 +1,6 @@
 -- refer this wiki to know how to use path specifiers in vim
 -- https://vim.fandom.com/wiki/Get_the_name_of_the_current_file
-
+vim.cmd('command! Run :lua run_code()')
 local run_command_table = {
     ['asm'] = 'nasm -f elf64 % -o %:r.o && ld %:r.o -o %:r && ./%:r && rm %:r.o',
     ['cpp'] = 'g++ -g -Wall % -o %:r && ./%:r',
