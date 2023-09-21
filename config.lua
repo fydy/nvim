@@ -205,7 +205,7 @@ lvim.builtin.lualine.sections.lualine_y = {
 --require('toggleterm').setup {
 require("toggleterm").setup {
     -- size can be a number or function which is passed the current terminal
-    size = 20 | function(term)
+    function(term)
         if term.direction == "horizontal" then
             return 10
         elseif term.direction == "vertical" then
@@ -241,11 +241,18 @@ require("toggleterm").setup {
     direction = 'horizontal',
     close_on_exit = true,
     shell = vim.o.shell, -- change the default shell
-    highlights = {
-        Normal = {
-            guibg = "NormalContrast"
-        },
+    -- This field is only relevant if direction is set to 'float'
+    float_opts = {
+        -- The border key is *almost* the same as 'nvim_win_open'
+        -- see :h nvim_win_open for details on borders however
+        -- the 'curved' border is a custom border type
+        -- not natively supported but implemented in this plugin.
+        border = 'curved', -- single/double/shadow/curved
+        width = math.floor(0.7 * vim.fn.winwidth(0)),
+        height = math.floor(0.8 * vim.fn.winheight(0)),
+        winblend = 4,
     },
+
 }
 
 local run_command_table = {
