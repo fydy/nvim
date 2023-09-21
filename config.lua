@@ -456,13 +456,6 @@ lvim.builtin.telescope.on_config_done = function(telescope)
     pcall(telescope.load_extension, "neoclip")
     -- any other extensions loading
 end
-vim.cmd('command! Run :lua run_code()')
-vim.cmd('command! Debug :lua debug_code()')
-
-vim.cmd('command! -nargs=* RunUpdate :lua update_command_table("run", \'<f-args>\')')
-vim.cmd('command! -nargs=* DebugUpdate :lua update_command_table("debug", \'<f-args>\')')
-
-vim.cmd('command CD cd %:p:h')
 -- Additional Plugins
 lvim.plugins = {
     { "krshrimali/nvim-autorunner" },
@@ -1122,3 +1115,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- reload "user.custom"
 reload "user.runner"
 reload "plug_config.telescope"
+
+vim.cmd('command! Run :lua run_code()')
+vim.cmd('command! Debug :lua debug_code()')
+
+vim.cmd('command! -nargs=* RunUpdate :lua update_command_table("run", \'<f-args>\')')
+vim.cmd('command! -nargs=* DebugUpdate :lua update_command_table("debug", \'<f-args>\')')
