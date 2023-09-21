@@ -212,6 +212,24 @@ require("toggleterm").setup {
             return vim.o.columns * 0.4
         end
     end,
+    highlights = {
+        -- highlights which map to a highlight group name and a table of it's values
+        -- NOTE: this is only a subset of values, any group placed here will be set for the terminal window split
+        Normal = {
+            guibg = { attribute = "fg", highlight = "Normal" },
+        },
+        NormalFloat = {
+            link = 'Normal'
+        },
+        FloatBorder = {
+            guifg = { attribute = "fg", highlight = "Normal" },
+            guibg = { attribute = "fg", highlight = "Normal" },
+        },
+    },
+    insert_mappings = true, -- whether or not the open mapping applies in insert mode
+    terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
+    persist_size = true,
+    persist_mode = true, -- if set to true (default) the previous terminal mode will be remembered
     --size = 15,
     open_mapping = '<F1>',
     hide_numbers = true,
