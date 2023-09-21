@@ -132,8 +132,8 @@ dap.configurations.python = {
 }
 
 -- lvim.builtin.which_key.mappings["y"] = { "<cmd>w !python<CR>", "执行当前python文件" }
-lvim.builtin.which_key.mappings["y"] = { "<cmd>:RunFile<CR>", "执行当前文件" }
--- lvim.builtin.which_key.mappings["y"] = { "<cmd>:lua run_code()<CR>", "运行文件" }
+-- lvim.builtin.which_key.mappings["y"] = { "<cmd>:RunFile<CR>", "执行当前文件" }
+lvim.builtin.which_key.mappings["y"] = { "<cmd>lua run_code()<CR>", "运行文件" }
 lvim.builtin.which_key.mappings["t"] = {
   name = "Diagnostics",
   j = { "<cmd>w !node<CR>", "执行js文件" },
