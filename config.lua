@@ -1103,7 +1103,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- reload "user.nvim-tree"
 -- reload "user.bufferline"
 -- reload "user.lualine"
--- reload "user.toggleterm"
+ reload "user.toggleterm"
 -- reload "user.project"
 -- reload "user.impatient"
 -- reload "user.indentline"
