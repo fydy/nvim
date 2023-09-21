@@ -244,8 +244,8 @@ require("toggleterm").setup {
     highlights = {
         Normal = {
             guibg = "NormalContrast"
-        }
-    }
+        },
+    },
 }
 
 local run_command_table = {
@@ -1279,8 +1279,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -- reload "user.toggleterm"
 -- reload "user.whichkey"
 -- reload "user.custom"
-reload "user.runner"
-reload "plug_config.telescope"
+--reload "user.runner"
+--reload "plug_config.telescope"
 
 -- vim.cmd('command! Run :lua run_code()')
 -- vim.cmd('command! Debug :lua debug_code()')
