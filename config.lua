@@ -202,8 +202,17 @@ lvim.builtin.lualine.sections.lualine_y = {
     components.location
 }
 
-require('toggleterm').setup {
-    size = 15,
+--require('toggleterm').setup {
+require("toggleterm").setup {
+    -- size can be a number or function which is passed the current terminal
+    size = 20 | function(term)
+        if term.direction == "horizontal" then
+            return 10
+        elseif term.direction == "vertical" then
+            return vim.o.columns * 0.4
+        end
+    end,
+    --size = 15,
     open_mapping = '<F1>',
     hide_numbers = true,
     shade_filetypes = {},
