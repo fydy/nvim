@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 /storage/emulated/0/Documents/Pydroid3/pdg2pdf.py
+badd +1 /storage/emulated/0/Documents/Pydroid3/1907.py
 argglobal
 %argdel
-$argadd /storage/emulated/0/Documents/Pydroid3/pdg2pdf.py
-edit /storage/emulated/0/Documents/Pydroid3/pdg2pdf.py
+$argadd /storage/emulated/0/Documents/Pydroid3/1907.py
+edit /storage/emulated/0/Documents/Pydroid3/1907.py
 argglobal
-let s:l = 2 - ((1 * winheight(0) + 12) / 25)
+let s:l = 258 - ((1 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 0
+keepjumps 258
+normal! 033|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
