@@ -205,9 +205,9 @@ lvim.builtin.lualine.sections.lualine_y = {
 --require('toggleterm').setup {
 require("toggleterm").setup {
     -- size can be a number or function which is passed the current terminal
-    function(term)
+    size = function(term)
         if term.direction == "horizontal" then
-            return 10
+            return 15
         elseif term.direction == "vertical" then
             return vim.o.columns * 0.4
         end
@@ -216,14 +216,15 @@ require("toggleterm").setup {
         -- highlights which map to a highlight group name and a table of it's values
         -- NOTE: this is only a subset of values, any group placed here will be set for the terminal window split
         Normal = {
-            guibg = { attribute = "fg", highlight = "Normal" },
+            link = 'Normal'
         },
         NormalFloat = {
             link = 'Normal'
         },
         FloatBorder = {
-            guifg = { attribute = "fg", highlight = "Normal" },
-            guibg = { attribute = "fg", highlight = "Normal" },
+            -- guifg = <VALUE-HERE>,
+            -- guibg = <VALUE-HERE>,
+            link = 'FloatBorder'
         },
     },
     insert_mappings = true, -- whether or not the open mapping applies in insert mode
