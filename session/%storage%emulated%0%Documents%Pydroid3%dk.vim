@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/.config/lvim
+cd /storage/emulated/0/Documents/Pydroid3/dk
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,17 +13,19 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 config.lua
+badd +132 keep.py
+badd +1 /storage/emulated/0/Documents/Pydroid3/dk/keep.csv
 argglobal
 %argdel
-$argadd config.lua
-edit config.lua
+$argadd keep.py
+edit keep.py
 argglobal
-let s:l = 132 - ((18 * winheight(0) + 9) / 19)
+balt /storage/emulated/0/Documents/Pydroid3/dk/keep.csv
+let s:l = 19 - ((18 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 132
+keepjumps 19
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -38,6 +40,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
