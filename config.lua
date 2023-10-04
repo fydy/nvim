@@ -931,29 +931,29 @@ lvim.plugins = {
   },
   { "krshrimali/nvim-autorunner" },
   { 'akinsho/toggleterm.nvim',   version = "*", config = true },
-  {
-    "jay-babu/mason-nvim-dap.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    cmd = "Mason",
-    config = function()
-      local mason_dap = require("mason-nvim-dap")
-      mason_dap.setup({
-        ensure_installed = {
-          "bash",
-          "cppdbg",
-          "js",
-          "node2",
-          "php",
-          "python",
-        },
-        auto_update = false,
-        run_on_start = false,
-        automatic_setup = true,
-      })
-      mason_dap.setup_handlers {}
-    end,
+  --{
+  --  "jay-babu/mason-nvim-dap.nvim",
+  --  dependencies = { "williamboman/mason.nvim" },
+  --  cmd = "Mason",
+  --  config = function()
+  --    local mason_dap = require("mason-nvim-dap")
+  --    mason_dap.setup({
+  --      ensure_installed = {
+  --        "bash",
+  --        "cppdbg",
+  --        "js",
+  --        "node2",
+  --        "php",
+  --        "python",
+  --      },
+  --      auto_update = false,
+  --      run_on_start = false,
+  --      automatic_setup = true,
+  --    })
+  -- mason_dap.setup_handlers {}
+  --  end,
 
-  },
+  -- },
   --{
   --  "ray-x/lsp_signature.nvim",
   --  event = "BufRead",
@@ -1551,6 +1551,7 @@ lvim.plugins = {
       }
     end,
   },
+  -- 自动保存
   {
     "Pocco81/auto-save.nvim",
     config = function()
@@ -1563,6 +1564,8 @@ lvim.plugins = {
     'mg979/vim-visual-multi',
     event = 'VeryLazy',
   },
+  -- 快速注释代码
+  { "tpope/vim-commentary",  event = "VeryLazy" },
 }
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.json", "*.jsonc" },
@@ -1585,7 +1588,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- reload "user.telescope"
 -- reload "user.gitsigns"
 -- reload "user.treesitter"
--- reload "user.autopairs"
+-- -- reload "user.autopairs"
 -- reload "user.comment"
 -- reload "user.nvim-tree"
 -- reload "user.bufferline"

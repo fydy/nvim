@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +52 /storage/emulated/0/Documents/Pydroid3/dk/keep.py
+badd +275 /storage/emulated/0/Documents/Pydroid3/1907.py
 argglobal
 %argdel
-$argadd /storage/emulated/0/Documents/Pydroid3/dk/keep.py
-edit /storage/emulated/0/Documents/Pydroid3/dk/keep.py
+$argadd /storage/emulated/0/Documents/Pydroid3/1907.py
+edit /storage/emulated/0/Documents/Pydroid3/1907.py
 argglobal
-let s:l = 169 - ((0 * winheight(0) + 9) / 19)
+let s:l = 275 - ((6 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 169
-normal! 0
+keepjumps 275
+normal! 05|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -38,7 +38,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
