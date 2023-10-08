@@ -1579,6 +1579,7 @@ vim.api.nvim_create_autocmd("FileType", {
     require("nvim-treesitter.highlight").attach(0, "bash")
   end,
 })
+--[[
 -- reload "user.options"
 -- reload "user.keymaps"
 -- reload "user.plugins"
@@ -1588,7 +1589,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- reload "user.telescope"
 -- reload "user.gitsigns"
 -- reload "user.treesitter"
--- -- reload "user.autopairs"
+-- reload "user.autopairs"
 -- reload "user.comment"
 -- reload "user.nvim-tree"
 -- reload "user.bufferline"
@@ -1602,12 +1603,12 @@ vim.api.nvim_create_autocmd("FileType", {
 -- reload "user.autocommands"
 -- reload "user.toggleterm"
 -- reload "user.whichkey"
--- reload "user.custom"
---reload "user.runner"
---reload "plug_config.telescope"
+-- reload "user.runner"
+-- reload "plug_config.telescope"
 
 -- vim.cmd('command! Run :lua run_code()')
 -- vim.cmd('command! Debug :lua debug_code()')
 
 -- vim.cmd('command! -nargs=* RunUpdate :lua update_command_table("run", \'<f-args>\')')
 -- vim.cmd('command! -nargs=* DebugUpdate :lua update_command_table("debug", \'<f-args>\')')
+]]
