@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~
+cd /storage/emulated/0/Documents/Pydroid3/dk/dk
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +274 /storage/emulated/0/Documents/Pydroid3/1907.py
+badd +1 delete_pdf_mark.py
 argglobal
 %argdel
-$argadd /storage/emulated/0/Documents/Pydroid3/1907.py
-edit /storage/emulated/0/Documents/Pydroid3/1907.py
+$argadd delete_pdf_mark.py
+edit delete_pdf_mark.py
 argglobal
-let s:l = 274 - ((17 * winheight(0) + 9) / 19)
+let s:l = 1 - ((0 * winheight(0) + 9) / 19)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 274
-normal! 018|
+keepjumps 1
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
